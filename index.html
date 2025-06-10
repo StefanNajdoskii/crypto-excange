@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menuvacnica na Kriptovaluti</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body onload="initApp()">
+  <nav class="toolbar">
+    <div class="logo-container">
+      <img src="PNG_token.png" alt="Logo" class="logo" />
+      <h1 id="usernameDisplay">Menuvacnica na Kriptovaluti</h1>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#" onclick="showSection('menuvacnica')">Menuvacnica</a></li>
+      <li><a href="#" onclick="showSection('cenovnik')">Cenovnik</a></li>
+      <li><a href="#" onclick="showSection('search')">Search</a></li>
+      <li><a href="#" onclick="showSection('lokacija')">Lokacija</a></li>
+      <li><a href="#" onclick="showSection('zaNas')">Za Nas</a></li>
+    </ul>
+  </nav>
+
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <h2 id="authTitle">Log In</h2>
+      <div id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Vnesete korisničko ime" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button onclick="loginUser()">Log In</button>
+        <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register</a></p>
+      </div>
+      <div id="registerForm" style="display: none;">
+        <input type="text" id="registerUsername" placeholder="Korisnicko ime" required />
+        <input type="email" id="registerEmail" placeholder="Email" required />
+        <input type="password" id="registerPassword" placeholder="Password" required />
+        <button onclick="registerUser()">Register</button>
+        <p>Already have an account? <a href="#" onclick="showLoginForm()">Log In</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menuvacnica Section -->
+  <div id="menuvacnica" class="container" style="display: none;">
+    <h2>Konvertiraj ja Kriptovalutata</h2>
+    <input type="number" id="amount" placeholder="Vnesi iznos" />
+    <select id="fromCurrency">
+      <!-- Dinamicko ke se napolnuva -->
+    </select>
+ 
+    <select id="toCurrency">
+      <option value="usd">Americki dolar (USD)</option>
+      <option value="eur">Evro (EUR)</option>
+    </select>
+    <br />
+    <button onclick="convertCurrency()">Konvertiraj</button>
+    <h3 id="result">Rezultatot ke bide prikazen ovde</h3>
+  </div>
+
+  <!-- Cenovnik Section -->
+  <div id="cenovnik" class="container" style="display: none; margin-top: 20px;">
+    <h2>Momentalna cena na Kriptovalutite</h2>
+
+    <div class="add-crypto-form" style="margin-bottom: 20px; text-align: left;">
+      <h3>Dodaj nova kriptovaluta</h3>
+      <input type="text" id="newCryptoId" placeholder=" ID (npr. bitcoin)" />
+      <input type="text" id="newCryptoName" placeholder="Ime i simbol (npr. Bitcoin (BTC))" />
+      <input type="number" id="newCryptoUsdPrice" placeholder="Cena USD (npr. 123.45)" step="0.01" />
+      <input type="number" id="newCryptoEurPrice" placeholder="Cena EUR (npr. 110.50)" step="0.01" />
+      <button onclick="addCrypto()">Dodaj</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Kriptovaluta</th>
+          <th>Cena (USD / EUR)</th>
+          <th>Kupi</th>
+          <th>Prodaj</th>
+          <th>Akcija</th>
+        </tr>
+      </thead>
+      <tbody id="crypto-prices">
+        <!-- Динамично ќе се генерираат редови -->
+      </tbody>
+    </table>
+
+    <div class="dashboard" style="margin-top: 30px;">
+      <div class="card">
+        <h3>Hot Coins</h3>
+        <div class="coin">BNB <span>$603.60 <span class="positive">+0.45%</span></span></div>
+        <div class="coin">BTC <span>$91.32K <span class="positive">+1.89%</span></span></div>
+        <div class="coin">ETH <span>$2.29K <span class="positive">+3.19%</span></span></div>
+      </div>
+      <div class="card">
+        <h3>New Listing</h3>
+        <div class="coin">GPS <span>$0.0577 <span class="negative">-12.44%</span></span></div>
+        <div class="coin">SHELL <span>$0.3368 <span class="negative">-5.37%</span></span></div>
+        <div class="coin">KAITO <span>$1.72 <span class="negative">-4.14%</span></span></div>
+      </div>
+      <div class="card">
+        <h3>Top Gainer Coin</h3>
+        <div class="coin">REZ <span>$0.02177 <span class="positive">+24.19%</span></span></div>
+        <div class="coin">MOVE <span>$0.4929 <span class="positive">+20.48%</span></span></div>
+        <div class="coin">LAYER <span>$1.07 <span class="positive">+18.09%</span></span></div>
+      </div>
+      <div class="card">
+        <h3>Top Volume Coin</h3>
+        <div class="coin">BTC <span>$91.32K <span class="positive">+1.89%</span></span></div>
+        <div class="coin">ETH <span>$2.29K <span class="positive">+3.19%</span></span></div>
+        <div class="coin">XRP <span>$2.62 <span class="positive">+4.91%</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Section -->
+  <div id="search" class="container" style="display: none; margin-top: 20px;">
+    <h2>Prebaraj Kriptovaluti</h2>
+    <input type="text" id="searchInput" placeholder="Vnesi ime ili simbol..." oninput="searchCrypto()" />
+    <table>
+      <thead>
+        <tr>
+          <th>Kriptovaluta</th>
+          <th>Cena (USD / EUR)</th>
+          <th>Detal</th>
+        </tr>
+      </thead>
+      <tbody id="search-results">
+        <!-- Филтрирани резултати ќе се прикажат тука -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Lokacija Section -->
+  <div id="lokacija" class="container" style="display: none;">
+    <h2>Lokacija</h2>
+    <p>Menuvacnicata se naojga vo Prilep, Makedonija.</p>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2944.970134567123!2d21.55211631572613!3d41.34575597926895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1356b1b1b1b1b1b1%3A0x1b1b1b1b1b1b1b1b!2sPrilep%2C%20Macedonia!5e0!3m2!1sen!2s!4v1616161616161!5m2!1sen!2s"
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <!-- O nama Section -->
+  <div id="zaNas" class="container" style="display: none;">
+    <h2>Za nas</h2>
+    <p>
+Nie sme sigurna i doverliva kancelarija za razmena na kriptovaluti koja ovozmožuva brzi, bezbedni i efikasni transakcii. Našata misija e 
+da obezbedime transparentni uslovi i konkurentni kursEvi, so fokus na korisničko zadovoljstvo i maksimalna sigurnost pri sekоја razmena.
+    </p>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detailModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeDetailModal()">&times;</span>
+      <h2 id="detail-name"></h2>
+      <p><strong>ID:</strong> <span id="detail-id"></span></p>
+      <p><strong>Cena USD:</strong> <span id="detail-usd"></span></p>
+      <p><strong>Cena EUR:</strong> <span id="detail-eur"></span></p>
+      <button onclick="closeDetailModal()">Zatvori</button>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeEditModal()">&times;</span>
+      <h2>Uredi Kriptovaluta</h2>
+      <input type="text" id="editCryptoName" placeholder="Novo ime i simbol" />
+      <input type="number" id="editCryptoUsd" placeholder="Nova cena USD" step="0.01" />
+      <input type="number" id="editCryptoEur" placeholder="Nova cena EUR" step="0.01" />
+      <button onclick="saveEdit()">Zachuvaj</button>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

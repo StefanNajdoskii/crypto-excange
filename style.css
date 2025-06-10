@@ -1,0 +1,357 @@
+/* Основни стилови */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Toolbar */
+.toolbar {
+  background: #ff9800;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.toolbar h1 {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 26px;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f4b400;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+#usernameDisplay {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Modal основни стилови */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Dashboard Styling */
+.dashboard {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  width: 220px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.coin {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.positive {
+  color: #4caf50;
+}
+
+.negative {
+  color: #f44336;
+}
+
+/* ГЛАВЕН КОНТЕЈНЕР */
+.container {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 800px;
+  margin-top: 100px;
+}
+
+/* Menuvacnica Section */
+#menuvacnica {
+  background: #2a2a2a;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+#menuvacnica h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #ff9800;
+}
+
+#menuvacnica input,
+#menuvacnica select {
+  width: calc(50% - 10px);
+  margin: 10px 5px;
+  padding: 12px;
+  background: #3a3a3a;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#menuvacnica button {
+  background-color: #ff9800;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 20px;
+}
+
+#menuvacnica button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+#menuvacnicaspan {
+  font-size: 24px;
+  color: #ff9800;
+  margin: 0 10px;
+}
+
+#menuvacnica h3 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Cenovnik / Prikaz tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #252525;
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  border: 1px solid #444;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #ff9800;
+  color: white;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #1e1e1e;
+}
+
+tr:hover {
+  background-color: #333;
+  transition: 0.3s;
+}
+
+.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Полинјата за додавање крипто */
+.add-crypto-form input {
+  margin: 8px 5px;
+  padding: 10px;
+  background: #3a3a3a;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 14px;
+  width: calc(25% - 12px);
+}
+
+/* Полинјата за edit modal */
+#editModal input {
+  width: calc(100% - 24px);
+  margin: 8px 0;
+  padding: 10px;
+  background: #3a3a3a;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Полинјата за search */
+#search input {
+  width: calc(100% - 40px);
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #3a3a3a;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Search резултати */
+#search table {
+  margin-top: 10px;
+}
+
+/* Подобрување на копчињата */
+button {
+  background-color: #ff9800;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background: #e68900;
+  transform: scale(1.05);
+}
+
+input,
+select {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* РЕСПОНЗИВНОСТ */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .toolbar h1 {
+    font-size: 22px;
+    padding: 10px 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .nav-links li {
+    margin: 5px 0;
+  }
+
+  .add-crypto-form input {
+    width: calc(45% - 12px);
+  }
+
+  #editModal .modal-content,
+  #detailModal .modal-content {
+    max-width: 90%;
+  }
+}
